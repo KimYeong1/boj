@@ -18,6 +18,9 @@ void printQuestion(int number, Question& q) {
     }
 }
 
+int correct = 0;
+int pass = 0;
+
 int getAnswer() {
     int answer;
     cout << "\n선택하세요 (1-4) 또는 0을 입력하여 건너뛰기: ";
@@ -35,16 +38,16 @@ int main() {
         {"한국의 유명한 불교사찰인 '경복궁'은 어느 도시에 있습니까?", {"부산", "서울", "대구", "광주"}, "2"}
     };
 
-    int correct = 0;
-    int pass = 0;
+
     
     string answers[6]; // 선택한 답 저장할 배열 정의
 
     for (int i = 0; i < 6; ++i) {
         printQuestion(i + 1, questions[i]);
         int answer = getAnswer();
-        answers[i]= questions[i].options[answer-1]; // 인덱스로 접근하여 선택한 답에 해당하는 문자열 저장
+        
         if (answer >= 1 && answer <= 4) {
+            answers[i]= questions[i].options[answer-1]; // 인덱스로 접근하여 선택한 답에 해당하는 문자열 저장
             if (questions[i].answer == to_string(answer)) {
                 correct++;
             }
@@ -75,9 +78,9 @@ int main() {
     cout << "=======      결과     =======\n";
     cout << "======= ======= ======= =======\n";
     cout << "총 질문 수 : 6\n";
-    cout << "정답 : " << correct << endl;
-    cout << "오답 : " << 6 - correct << endl;
-    cout << "건너뛴 질문 : " << pass << endl;
+    cout << "정답 : " << correct << "\n";
+    cout << "오답 : " << 6 - correct-pass << "\n";
+    cout << "건너뛴 질문 : " << pass << "\n";
 
     return 0;
 }
